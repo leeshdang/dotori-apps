@@ -1,0 +1,9 @@
+{
+  "appId": "com.dotori.games",
+  "appName": "도토리 게임",
+  "webDir": "dist",
+  "bundledWebRuntime": false,
+  "server": {
+    "androidScheme": "https"
+  }
+}
