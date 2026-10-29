@@ -851,6 +851,13 @@ export const App: React.FC = () => {
               lang={lang}
               timerSeconds={timerSeconds}
               isTimerActive={activeTab === 'aimatch' && isPlayingAIMatch}
+              guideMove={
+                activeTab === 'quest'
+                  ? currentQuest.steps[currentQuestStep]?.expectedMove || null
+                  : activeTab === 'tactic'
+                  ? currentTactic.steps[currentTacticStep]?.expectedMove || null
+                  : null
+              }
             />
           </section>
         )}

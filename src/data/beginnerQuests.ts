@@ -29,7 +29,7 @@ function createQ2Board(): BoardState {
 // Quest 3: 사(Guard)의 호위와 대각선 길
 function createQ3Board(): BoardState {
   const b = createEmptyBoard();
-  b[8][4] = p('cho', 'king', 'c-k-1');
+  b[9][4] = p('cho', 'king', 'c-k-1'); // Cho King at bottom center of palace
   b[9][3] = p('cho', 'guard', 'c-g-1'); // Corner of palace
   b[1][4] = p('han', 'king', 'h-k-1');
   b[7][5] = p('han', 'soldier', 'h-s-1'); // Threatening enemy

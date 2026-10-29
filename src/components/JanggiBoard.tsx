@@ -20,6 +20,7 @@ interface JanggiBoardProps {
   lang?: Language;
   timerSeconds?: number;
   isTimerActive?: boolean;
+  guideMove?: { from: Position; to: Position } | null;
 }
 
 export const JanggiBoard: React.FC<JanggiBoardProps> = ({
@@ -37,6 +38,7 @@ export const JanggiBoard: React.FC<JanggiBoardProps> = ({
   lang = 'ko',
   timerSeconds = 30,
   isTimerActive = false,
+  guideMove = null,
 }) => {
   const t = translations[lang] || translations.ko;
 
@@ -412,6 +414,42 @@ export const JanggiBoard: React.FC<JanggiBoardProps> = ({
           {/* Han / Cho Palace center circles */}
           <circle cx={54 + 4 * 99} cy={50 + 1 * 100} r="5" fill="#6b3d17" />
           <circle cx={54 + 4 * 99} cy={50 + 8 * 100} r="5" fill="#6b3d17" />
+
+          {/* Quest & Tactic Guide Arrow */}
+          {guideMove && (
+            <g className="pointer-events-none">
+              <defs>
+                <marker
+                  id="guide-arrowhead"
+                  markerWidth="8"
+                  markerHeight="8"
+                  refX="6"
+                  refY="4"
+                  orient="auto"
+                >
+                  <polygon points="0 1, 8 4, 0 7" fill="#f59e0b" />
+                </marker>
+                <filter id="guide-glow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="3" result="blur" />
+                  <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                </filter>
+              </defs>
+              <line
+                x1={54 + guideMove.from.c * 99}
+                y1={50 + guideMove.from.r * 100}
+                x2={54 + guideMove.to.c * 99}
+                y2={50 + guideMove.to.r * 100}
+                stroke="#fbbf24"
+                strokeWidth="5"
+                strokeDasharray="8 6"
+                strokeLinecap="round"
+                opacity="0.95"
+                filter="url(#guide-glow)"
+                markerEnd="url(#guide-arrowhead)"
+                className="animate-pulse"
+              />
+            </g>
+          )}
         </svg>
 
         {/* 10 x 9 Clickable Intersection Points */}
@@ -464,6 +502,30 @@ export const JanggiBoard: React.FC<JanggiBoardProps> = ({
                   {/* King Check Alert Glow */}
                   {kingCheck && (
                     <div className="absolute -inset-2 rounded-full border-2 border-rose-600 bg-rose-600/40 animate-ping pointer-events-none z-20" />
+                  )}
+
+                  {/* Quest / Tactic Guide: Start Square */}
+                  {guideMove && guideMove.from.r === r && guideMove.from.c === c && (
+                    <>
+                      <div className="absolute -inset-2 rounded-full border-2 border-emerald-400 bg-emerald-400/25 animate-ping pointer-events-none z-20" />
+                      <div className="absolute -inset-1 rounded-full border-2 border-emerald-400 bg-emerald-500/20 shadow-lg shadow-emerald-400/50 pointer-events-none z-20" />
+                      <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-1.5 py-0.2 rounded-full bg-emerald-500 text-black font-black text-[9px] shadow-md shadow-emerald-500/50 animate-bounce whitespace-nowrap z-30 pointer-events-none">
+                        이 말 터치
+                      </span>
+                    </>
+                  )}
+
+                  {/* Quest / Tactic Guide: Target Destination Square */}
+                  {guideMove && guideMove.to.r === r && guideMove.to.c === c && (
+                    <>
+                      <div className="absolute -inset-2 rounded-full border-2 border-dashed border-amber-400 bg-amber-400/20 animate-spin pointer-events-none z-20" style={{ animationDuration: '6s' }} />
+                      <div className="absolute inset-0 rounded-full border-2 border-amber-400 bg-amber-400/30 shadow-lg shadow-amber-400/50 flex items-center justify-center pointer-events-none z-20">
+                        <div className="w-2.5 h-2.5 rounded-full bg-amber-300 animate-ping" />
+                      </div>
+                      <span className="absolute -bottom-3.5 left-1/2 -translate-x-1/2 px-1.5 py-0.2 rounded-full bg-gradient-to-r from-amber-400 to-yellow-300 text-black font-black text-[9px] shadow-md shadow-amber-400/50 whitespace-nowrap z-30 pointer-events-none">
+                        여기 착수
+                      </span>
+                    </>
                   )}
 
                   {/* Piece Token */}

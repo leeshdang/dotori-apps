@@ -81,6 +81,11 @@ export const QuestPanel: React.FC<QuestPanelProps> = ({
           <p className="text-[11px] text-indigo-200/80 mt-1">
             👉 {currentStep.instruction}
           </p>
+          <div className="flex items-center gap-2 mt-1 pt-1 border-t border-white/5">
+            <span className="text-[10px] px-2 py-0.5 rounded-md bg-amber-500/20 text-amber-300 border border-amber-500/40 font-bold flex items-center gap-1">
+              ✨ 장기판의 황금 가이드 화살표를 확인하세요
+            </span>
+          </div>
         </div>
 
         {/* Tip Box */}
