@@ -1,0 +1,101 @@
+{
+  "name": "dotori-janggi-learning",
+  "private": true,
+  "version": "1.0.0",
+  "description": "DJL - Dotori Janggi Learning (도토리 장기 게임 & AI 급수 판정)",
+  "author": "Dotori Tools",
+  "license": "UNLICENSED",
+  "type": "module",
+  "main": "electron/main.cjs",
+  "scripts": {
+    "prebuild": "node scripts/update-version.cjs",
+    "dev": "vite",
+    "build": "node scripts/update-version.cjs && tsc && vite build",
+    "preview": "vite preview",
+    "electron:start": "npm run build && electron .",
+    "electron:build:win": "npm run build && electron-builder --win nsis --x64",
+    "dist:win": "npm run build && electron-builder --win nsis --x64",
+    "dist:win:portable": "npm run build && electron-builder --win zip --x64",
+    "dist:linux": "npm run build && electron-builder --linux AppImage tar.gz --x64",
+    "cap:sync": "npm run build && npx cap sync android",
+    "build:apk": "npm run cap:sync && cmd /c \"set JAVA_HOME=C:\\Program Files\\Android\\Android Studio\\jbr&& set ANDROID_HOME=%LOCALAPPDATA%\\Android\\Sdk&& set PATH=%JAVA_HOME%\\bin;%PATH%&& cd android&& gradlew.bat assembleRelease\" && powershell -Command \"Copy-Item -Path 'android\\app\\build\\outputs\\apk\\release\\app-release.apk' -Destination 'release\\Dotori-JanggiLearning.apk' -Force\""
+  },
+  "build": {
+    "appId": "com.dotori.janggilearning",
+    "productName": "Dotori Janggi Learning",
+    "directories": {
+      "output": "release"
+    },
+    "files": [
+      "dist/**/*",
+      "electron/main.cjs",
+      "build/icon.png",
+      "build/icon.ico"
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "Dotori Janggi Learning",
+      "artifactName": "Dotori-JanggiLearning-win-x64.exe",
+      "installerLanguages": [
+        "ko_KR",
+        "en_US",
+        "ja_JP",
+        "zh_CN"
+      ],
+      "multiLanguageInstaller": true,
+      "displayLanguageSelector": true
+    },
+    "portable": {
+      "artifactName": "Dotori-JanggiLearning-portable.zip"
+    },
+    "mac": {
+      "target": "dmg",
+      "artifactName": "Dotori-JanggiLearning-mac-universal.dmg"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "tar.gz"
+      ],
+      "artifactName": "Dotori-JanggiLearning-linux.${ext}"
+    }
+  },
+  "dependencies": {
+    "@capacitor/android": "^7.6.9",
+    "@capacitor/cli": "^7.6.9",
+    "@capacitor/core": "^7.6.9",
+    "canvas-confetti": "^1.9.4",
+    "lucide-react": "^0.475.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.0.9",
+    "@types/canvas-confetti": "^1.9.0",
+    "@types/node": "^22.13.5",
+    "@types/react": "^19.0.10",
+    "@types/react-dom": "^19.0.4",
+    "@vitejs/plugin-react": "^4.3.4",
+    "cross-env": "^7.0.3",
+    "electron": "^33.4.11",
+    "electron-builder": "^25.1.8",
+    "tailwindcss": "^4.0.9",
+    "typescript": "^5.7.3",
+    "vite": "^6.2.0"
+  },
+  "dotoriVersion": "DJL-20261029_2311"
+}

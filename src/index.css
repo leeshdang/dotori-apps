@@ -1,0 +1,180 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-calligraphy: 'Noto Serif KR', serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --color-neutral-950: #0a0a0f;
+}
+
+:root {
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  color-scheme: dark;
+}
+
+body {
+  background-color: #090a10;
+  color: #f3f4f6;
+  font-family: 'Pretendard', sans-serif;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbars */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.12);
+  border-radius: 9999px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Glassmorphism helpers matching Dotori Tools family look */
+.glass-panel {
+  background: rgba(18, 19, 29, 0.88);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-card {
+  background: rgba(24, 25, 38, 0.65);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-card:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Glow effects */
+.glow-pink {
+  box-shadow: 0 0 35px -5px rgba(236, 72, 153, 0.25);
+}
+.glow-indigo {
+  box-shadow: 0 0 35px -5px rgba(99, 102, 241, 0.25);
+}
+
+/* Janggi Board Wood Styling - 밝고 화사한 정통 비자목 원목 톤 */
+.janggi-board-wood {
+  background: linear-gradient(135deg, #faebd7 0%, #f6dfbe 45%, #eccfa5 85%, #e2be8e 100%);
+  box-shadow: 
+    inset 0 0 14px rgba(150, 95, 40, 0.16),
+    0 15px 35px -8px rgba(0, 0, 0, 0.6),
+    0 0 30px rgba(246, 223, 190, 0.25);
+  border: 1.5px solid rgba(168, 115, 60, 0.45);
+}
+
+/* Janggi Piece Styling - Clean Round Tokens without any outer borders */
+.piece-wood-cho {
+  background: radial-gradient(circle at 35% 30%, #f7dfba 0%, #deb078 40%, #b88344 85%, #8a571f 100%);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+  border: none !important;
+}
+.piece-wood-cho .piece-char {
+  color: #0b4528;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.4);
+}
+
+.piece-wood-han {
+  background: radial-gradient(circle at 35% 30%, #f7dfba 0%, #deb078 40%, #b88344 85%, #8a571f 100%);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);
+  border: none !important;
+}
+.piece-wood-han .piece-char {
+  color: #8b1313;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.4);
+}
+
+/* 2. Theme: Neo Cyber Crystal (네오 사이버 크리스탈) */
+.piece-crystal-cho {
+  background: radial-gradient(circle at 35% 30%, #38bdf8 0%, #0284c7 50%, #03456b 100%);
+  border: none !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4), 0 0 8px rgba(56, 189, 248, 0.25);
+}
+.piece-crystal-cho .piece-char {
+  color: #f0f9ff;
+  text-shadow: 0 0 4px #38bdf8;
+}
+
+.piece-crystal-han {
+  background: radial-gradient(circle at 35% 30%, #fb7185 0%, #e11d48 50%, #6e0b23 100%);
+  border: none !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4), 0 0 8px rgba(251, 113, 133, 0.25);
+}
+.piece-crystal-han .piece-char {
+  color: #fff1f2;
+  text-shadow: 0 0 4px #fb7185;
+}
+
+/* 3. Theme: Modern Ivory & Obsidian (프리미엄 흑백 옥석) */
+.piece-modern-cho {
+  background: radial-gradient(circle at 35% 30%, #ffffff 0%, #f1f5f9 50%, #cbd5e1 100%);
+  border: none !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+}
+.piece-modern-cho .piece-char {
+  color: #1e3a8a;
+  text-shadow: 0 1px 1px rgba(255, 255, 255, 0.6);
+}
+
+.piece-modern-han {
+  background: radial-gradient(circle at 35% 30%, #3f3f46 0%, #27272a 50%, #111113 100%);
+  border: none !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+}
+.piece-modern-han .piece-char {
+  color: #f59e0b;
+  text-shadow: 0 0 3px rgba(245, 158, 11, 0.4);
+}
+
+/* 4. Theme: Classic Royal Chess (클래식 로열 체스) */
+.piece-chess-classic-cho {
+  background: radial-gradient(circle at 35% 30%, #38bdf8 0%, #1d4ed8 60%, #0f172a 100%);
+  border: none !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4), 0 0 6px rgba(56, 189, 248, 0.2);
+}
+.piece-chess-classic-cho .piece-char {
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+.piece-chess-classic-han {
+  background: radial-gradient(circle at 35% 30%, #fb7185 0%, #be123c 60%, #4c0519 100%);
+  border: none !important;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4), 0 0 6px rgba(244, 63, 94, 0.2);
+}
+.piece-chess-classic-han .piece-char {
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.6);
+}
+
+/* 5. Theme: Neo Modern Chess (네오 모던 체스) */
+.piece-chess-modern-cho {
+  background: radial-gradient(circle at 50% 50%, #0c4a6e 0%, #020617 85%);
+  border: none !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), 0 0 8px rgba(34, 211, 238, 0.25);
+}
+.piece-chess-modern-cho .piece-char {
+  color: #67e8f9;
+  text-shadow: 0 0 6px #22d3ee;
+}
+
+.piece-chess-modern-han {
+  background: radial-gradient(circle at 50% 50%, #451a03 0%, #09090b 85%);
+  border: none !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), 0 0 8px rgba(251, 191, 36, 0.25);
+}
+.piece-chess-modern-han .piece-char {
+  color: #fde68a;
+  text-shadow: 0 0 6px #fbbf24;
+}
